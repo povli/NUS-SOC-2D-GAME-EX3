@@ -14,6 +14,13 @@ public partial class EnemyBehavior : MonoBehaviour {
     private const float kEnemyMovingSpeed = 20f;
 
     public static bool mSeqencingMode = true;
+    public static string GetControlState()
+    {
+        if (mSeqencingMode)
+            return "Enemy:" + "Sequence";
+        else
+            return "Enemy:" + "Random";
+    }
 
     #region Trigger into chase or die
     private void OnTriggerEnter2D(Collider2D collision)
