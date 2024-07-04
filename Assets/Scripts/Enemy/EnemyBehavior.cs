@@ -11,6 +11,10 @@ public partial class EnemyBehavior : MonoBehaviour {
     private const int kHitsToDestroy = 4;
     private const float kEnemyEnergyLost = 0.8f;
 
+    private const float kEnemyMovingSpeed = 20f;
+
+    public static bool mSeqencingMode = true;
+
     #region Trigger into chase or die
     private void OnTriggerEnter2D(Collider2D collision)
     {
