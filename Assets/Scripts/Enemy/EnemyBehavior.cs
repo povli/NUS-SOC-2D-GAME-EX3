@@ -37,6 +37,14 @@ public partial class EnemyBehavior : MonoBehaviour {
         MoveToNextTerminal();
     }
 
+    public static string GetControlState()
+    {
+        if (mSeqencingMode)
+            return "Enemy:" + "Sequence";
+        else
+            return "Enemy:" + "Random";
+    }
+
     #region Trigger into chase or die
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -104,7 +112,7 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     bool AreVectorsCollinear(Vector3 upVector, Vector3 orientation)
     {
-        if ((upVector.x & upVector.y) || (orientation.x & orientation.y))
+        if ((upVector.x == 0f && upVector.y == 0f) || (orientation.x == 0f && orientation.y == 0f))
         {
             return false;
         }

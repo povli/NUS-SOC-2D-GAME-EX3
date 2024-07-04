@@ -5,6 +5,7 @@ using System.Collections;
 public class HeroBehavior : MonoBehaviour {
     
     private EggSpawnSystem mEggSystem = null;
+    public CoolDownBar mCoolDown;
     private const float kHeroRotateSpeed = 90f/2f; // 90-degrees in 2 seconds
     private const float kHeroSpeed = 20f;  // 20-units in a second
     private float mHeroSpeed = kHeroSpeed;
@@ -60,8 +61,13 @@ public class HeroBehavior : MonoBehaviour {
     {
         if (mEggSystem.CanSpawn())
         {
-            if (Input.GetKey("space"))
-                mEggSystem.SpawnAnEgg(transform.position, transform.up);
+            if (Input.GetKey("space")){
+                if(mCoolDown.ReadyForNext()){
+                    mEggSystem.SpawnAnEgg(transform.position, transform.up);
+                    mCoolDown.TriggerCoolDown();
+                }
+            }
+                
         }
     }
 
