@@ -49,6 +49,7 @@ public partial class EnemyBehavior : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.J)){
             mSeqencingMode = !mSeqencingMode;
         }
+        AfterDestroyed();
         MoveToNextTerminal();
     }
 
@@ -112,6 +113,14 @@ public partial class EnemyBehavior : MonoBehaviour {
             current_destination %= mTotalTerminals;
         }else{
             current_destination = Random.Range(0, mTotalTerminals);
+        }
+    }
+
+    private void AfterDestroyed()
+    {
+        if (Terminbehavior.BeenDestroyed == 1)
+        {
+            setDst();
         }
     }
 
