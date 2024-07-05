@@ -142,10 +142,4 @@ public partial class EnemyBehavior : MonoBehaviour {
         // update a terminal's position
         mTerminalPositions[index] = new_position;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
-
 }
