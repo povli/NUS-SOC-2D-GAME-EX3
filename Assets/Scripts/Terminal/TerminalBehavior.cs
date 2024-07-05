@@ -13,6 +13,7 @@ public class Terminbehavior : MonoBehaviour
     public  static int BeenDestroyed = 0;
     private bool Xcheck = true;
     private bool Ycheck = true;
+    public static int trans;
 
     void Start()
     {
@@ -24,8 +25,9 @@ public class Terminbehavior : MonoBehaviour
     {
         if (Life <= 0)
         {
+            trans = Uid;
             Debug.Log("die");
-            //BeenDestroyed = 1;
+            BeenDestroyed = 1;
             Vector3 p = transform.localPosition;
             float tmpnumx = Random.Range(0, 10);
             float tmpnumy = Random.Range(0, 10);
@@ -83,6 +85,7 @@ public class Terminbehavior : MonoBehaviour
             Xcheck = true;
             Ycheck = true;
             transform.localPosition = p;
+
             EnemyBehavior.updateTerminalPosition(Uid, transform.localPosition);
             Life = 100;
             Color color = GetComponent<Renderer>().material.color;
@@ -117,16 +120,16 @@ public class Terminbehavior : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("fite");
+        
         if (collision.gameObject.tag == "Respawn")
         {
 
             Color color = GetComponent<Renderer>().material.color;
-            Debug.Log("pp");
+            
             color.a *= 0.75f;
-            Debug.Log("vv");
+            
             GetComponent<Renderer>().material.color = color;
-            Debug.Log("dd");
+            
             Life -= 25;
         }
 
