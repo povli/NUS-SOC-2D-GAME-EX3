@@ -39,6 +39,7 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     private void Awake() {
         // initialize terminals positions
+        mTerminalPositions = new Vector3[6];
     }
 
     private void Start() {
