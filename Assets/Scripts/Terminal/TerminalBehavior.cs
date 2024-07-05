@@ -12,7 +12,7 @@ public class Terminbehavior : MonoBehaviour
     private bool Hcheck = true;
     void Start()
     {
-
+        EnemyBehavior.updateTerminalPosition(Uid, transform.localPosition);
     }
 
     // Update is called once per frame
