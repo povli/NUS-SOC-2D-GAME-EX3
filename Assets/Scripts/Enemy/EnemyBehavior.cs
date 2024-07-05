@@ -48,7 +48,7 @@ public partial class EnemyBehavior : MonoBehaviour {
             mSeqencingMode = !mSeqencingMode;
             Debug.Log(mSeqencingMode);
         }
-        AfterDestroyed();
+
         MoveToNextTerminal();
         CheckTargetPosition();
         // Debug.Log(mTerminalPositions[current_destination]);
