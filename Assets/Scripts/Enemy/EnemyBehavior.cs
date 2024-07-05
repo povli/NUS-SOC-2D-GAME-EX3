@@ -85,7 +85,8 @@ public partial class EnemyBehavior : MonoBehaviour {
     private void ThisEnemyIsHit()
     {
         sEnemySystem.OneEnemyDestroyed();
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        transform.localPosition = sEnemySystem.RandomGenerate();
     }
     #endregion
 

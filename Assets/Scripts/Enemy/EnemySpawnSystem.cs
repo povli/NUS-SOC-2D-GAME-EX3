@@ -29,14 +29,21 @@ public class EnemySpawnSystem
         for (int i = mTotalEnemy; i < kMaxEnemy; i++)
         {
             GameObject p = GameObject.Instantiate(mEnemyTemplate) as GameObject;
-            float x = Random.Range(mSpawnRegionMin.x, mSpawnRegionMax.x);
-            float y = Random.Range(mSpawnRegionMin.y, mSpawnRegionMax.y);
-            p.transform.position = new Vector3(x, y, 0f);
+            p.transform.position = RandomGenerate();
             mTotalEnemy++;
         }
     }
 
-    public void OneEnemyDestroyed() { mEnemyDestroyed++;  ReplaceOneEnemy(); }
+    public void OneEnemyDestroyed() { 
+        mEnemyDestroyed++;  
+        // ReplaceOneEnemy(); 
+    }
     public void ReplaceOneEnemy() { mTotalEnemy--; GenerateEnemy(); }
     public string GetEnemyState() { return "  ENEMY: Count(" + mTotalEnemy + ") Destroyed(" + mEnemyDestroyed + ")"; }
+
+    public Vector3 RandomGenerate(){
+            float x = Random.Range(mSpawnRegionMin.x, mSpawnRegionMax.x);
+            float y = Random.Range(mSpawnRegionMin.y, mSpawnRegionMax.y);
+            return new Vector3(x, y, 0f);
+    }
 }
