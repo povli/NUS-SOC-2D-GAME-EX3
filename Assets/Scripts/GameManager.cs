@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     public static GameManager sTheGlobalBehavior = null;
 
     public Text mGameStateEcho = null;  // Defined in UnityEngine.UI
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour {
     private EnemySpawnSystem mEnemySystem = null;
 
     private CameraSupport mMainCamera;
+
+    public static bool mSeqencingMode = true; // seqencing from A-Z if true
 
     private void Start()
     {
@@ -23,7 +26,13 @@ public class GameManager : MonoBehaviour {
         mEnemySystem = new EnemySpawnSystem(b.min, b.max);
     }
 
-	void Update () {
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.J)){
+            mSeqencingMode = !mSeqencingMode;
+            // Debug.Log(mSeqencingMode);
+            // Debug.Log(111);
+        }
         EchoGameState(); // always do this
 
         if (Input.GetKey(KeyCode.Q))
@@ -37,6 +46,6 @@ public class GameManager : MonoBehaviour {
 
     private void EchoGameState()
     {
-        mGameStateEcho.text =  mHero.GetHeroState() + "  " + mEnemySystem.GetEnemyState();
+        mGameStateEcho.text = mHero.GetHeroState() + "  " + mEnemySystem.GetEnemyState() + " " + EnemyBehavior.GetControlState();
     }
 }
