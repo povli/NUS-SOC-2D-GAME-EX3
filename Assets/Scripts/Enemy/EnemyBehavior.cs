@@ -17,8 +17,6 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     private const float kEnemyRotatingSpeed = 0.03f; // enemy ratate speed
 
-    public static bool mSeqencingMode = true; // seqencing from A-Z if true
-
     private const int mTotalTerminals = 6;
 
     private static Vector3[] mTerminalPositions = new Vector3[6]; // positiions of terminal A-F
@@ -35,8 +33,6 @@ public partial class EnemyBehavior : MonoBehaviour {
             setDst();
     }
 
-
-
     private void Awake() {
         // initialize terminals positions
     }
@@ -45,10 +41,6 @@ public partial class EnemyBehavior : MonoBehaviour {
         Debug.Assert(mTerminalPositions != null);
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.J)){
-            mSeqencingMode = !mSeqencingMode;
-            Debug.Log(mSeqencingMode);
-        }
         AfterDestroyed();
         MoveToNextTerminal();
         CheckTargetPosition();
@@ -57,7 +49,7 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     public static string GetControlState()
     {
-        if (mSeqencingMode)
+        if (GameManager.mSeqencingMode)
             return "Enemy:" + "Sequence";
         else
             return "Enemy:" + "Random";
@@ -110,7 +102,7 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     private void setDst(){
         // change the destination
-        if(mSeqencingMode){
+        if(GameManager.mSeqencingMode){
             current_destination += 1;
             current_destination %= mTotalTerminals;
         }else{

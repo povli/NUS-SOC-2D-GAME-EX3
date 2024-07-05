@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     private CameraSupport mMainCamera;
 
+    public static bool mSeqencingMode = true; // seqencing from A-Z if true
+
     private void Start()
     {
         GameManager.sTheGlobalBehavior = this;  // Singleton pattern
@@ -26,6 +28,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.J)){
+            mSeqencingMode = !mSeqencingMode;
+            // Debug.Log(mSeqencingMode);
+            // Debug.Log(111);
+        }
         EchoGameState(); // always do this
 
         if (Input.GetKey(KeyCode.Q))
