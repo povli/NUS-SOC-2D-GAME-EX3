@@ -49,6 +49,7 @@ public partial class EnemyBehavior : MonoBehaviour {
             mSeqencingMode = !mSeqencingMode;
             Debug.Log(mSeqencingMode);
         }
+        AfterDestroyed();
         MoveToNextTerminal();
         CheckTargetPosition();
         // Debug.Log(mTerminalPositions[current_destination]);
@@ -116,6 +117,14 @@ public partial class EnemyBehavior : MonoBehaviour {
             current_destination = Random.Range(0, mTotalTerminals);
         }
         // Debug.Log("set dst" + current_destination);
+    }
+
+    private void AfterDestroyed()
+    {
+        if (Terminbehavior.BeenDestroyed == 1)
+        {
+            setDst();
+        }
     }
 
     private void PointAtPosition(Vector3 p, float r)
