@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public partial class EnemyBehavior : MonoBehaviour {
@@ -20,7 +21,7 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     private const int mTotalTerminals = 6;
 
-    private static Vector3[] mTerminalPositions; // positiions of terminal A-F
+    private static Vector3[] mTerminalPositions = new Vector3[6]; // positiions of terminal A-F
 
     private int current_destination = 0; // current terminal going to
 
@@ -32,14 +33,12 @@ public partial class EnemyBehavior : MonoBehaviour {
         float dist = Vector3.Distance(mTerminalPositions[current_destination], transform.localPosition);
         if (dist < kVeryClose)
             setDst();
-
     }
 
 
 
     private void Awake() {
         // initialize terminals positions
-        mTerminalPositions = new Vector3[6];
     }
 
     private void Start() {
@@ -48,8 +47,11 @@ public partial class EnemyBehavior : MonoBehaviour {
     private void Update() {
         if(Input.GetKeyDown(KeyCode.J)){
             mSeqencingMode = !mSeqencingMode;
+            Debug.Log(mSeqencingMode);
         }
         MoveToNextTerminal();
+        CheckTargetPosition();
+        // Debug.Log(mTerminalPositions[current_destination]);
     }
 
     public static string GetControlState()
@@ -113,6 +115,7 @@ public partial class EnemyBehavior : MonoBehaviour {
         }else{
             current_destination = Random.Range(0, mTotalTerminals);
         }
+        // Debug.Log("set dst" + current_destination);
     }
 
     private void PointAtPosition(Vector3 p, float r)
@@ -140,6 +143,8 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     public static void updateTerminalPosition(int index, Vector3 new_position){
         // update a terminal's position
+        // Debug.Log(mTerminalPositions);
         mTerminalPositions[index] = new_position;
+        // Debug.Log("set pos");
     }
 }

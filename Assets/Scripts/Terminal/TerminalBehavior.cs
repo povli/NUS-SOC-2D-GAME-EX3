@@ -12,7 +12,7 @@ public class Terminbehavior : MonoBehaviour
     private bool Hcheck = true;
     void Start()
     {
-        EnemyBehavior.updateTerminalPosition(Uid, transform.localPosition);
+        EnemyBehavior.updateTerminalPosition(Uid, transform.position);
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class Terminbehavior : MonoBehaviour
                 }
             }
             transform.localPosition = p;
-            EnemyBehavior.updateTerminalPosition(Uid, transform.localPosition);
+            EnemyBehavior.updateTerminalPosition(Uid, transform.position);
             Life = 100;
             Color color = GetComponent<Renderer>().material.color;
             color.a /= 0.75f;
