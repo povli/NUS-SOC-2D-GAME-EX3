@@ -40,7 +40,7 @@ public partial class EnemyBehavior : MonoBehaviour {
         Debug.Assert(mTerminalPositions != null);
     }
     private void Update() {
-        AfterDestroyed();
+        // AfterDestroyed();
         MoveToNextTerminal();
         CheckTargetPosition();
         // Debug.Log(mTerminalPositions[current_destination]);
