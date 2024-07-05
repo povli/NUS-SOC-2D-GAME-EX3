@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using static UnityEngine.GraphicsBuffer;
 
 public partial class EnemyBehavior : MonoBehaviour {
 
@@ -22,6 +23,19 @@ public partial class EnemyBehavior : MonoBehaviour {
     private static Vector3[] mTerminalPositions; // positiions of terminal A-F
 
     private int current_destination = 0; // current terminal going to
+
+    private const float kVeryClose = 25f;     //distance judge
+
+    private void CheckTargetPosition()      //distance judge turn
+    {
+        // Access the GameManager
+        float dist = Vector3.Distance(mTerminalPositions[current_destination], transform.localPosition);
+        if (dist < kVeryClose)
+            setDst();
+
+    }
+
+
 
     private void Awake() {
         // initialize terminals positions
@@ -127,4 +141,10 @@ public partial class EnemyBehavior : MonoBehaviour {
         // update a terminal's position
         mTerminalPositions[index] = new_position;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
 }
