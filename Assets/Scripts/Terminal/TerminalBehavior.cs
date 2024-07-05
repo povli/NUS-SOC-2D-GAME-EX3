@@ -14,10 +14,12 @@ public class Terminbehavior : MonoBehaviour
     private bool Xcheck = true;
     private bool Ycheck = true;
     public static int trans;
+    Vector3 poiont;
 
     void Start()
     {
         EnemyBehavior.updateTerminalPosition(Uid, transform.position);
+        poiont= transform.position;
     }
 
     // Update is called once per frame
@@ -31,13 +33,13 @@ public class Terminbehavior : MonoBehaviour
             Vector3 p = transform.localPosition;
             float tmpnumx = Random.Range(0, 10);
             float tmpnumy = Random.Range(0, 10);
-            Vector3 viewportPosition = new Vector3(1f, 1f, mCamera.nearClipPlane);
-            Vector3 poiont = Camera.main.ViewportToWorldPoint(viewportPosition);
+            //Vector3 viewportPosition = new Vector3(1f, 1f, mCamera.nearClipPlane);
+            //Vector3 poiont = Camera.main.ViewportToWorldPoint(viewportPosition);
             Vector3 mSpawnRegionMin, mSpawnRegionMax;
-            mSpawnRegionMin.x = -poiont.x * 0.9f;
-            mSpawnRegionMin.y = -poiont.y * 0.9f;
-            mSpawnRegionMax.x = poiont.x * 0.9f;
-            mSpawnRegionMax.y = poiont.y * 0.9f;
+            mSpawnRegionMin.x = poiont.x -15f;
+            mSpawnRegionMin.y = poiont.y -15f;
+            mSpawnRegionMax.x = poiont.x +15f;
+            mSpawnRegionMax.y = poiont.y +15f;
             if ((p.x + 15) > mSpawnRegionMax.x /*&& (p.y + 15) > mSpawnRegionMax.y*/)
             {
                 p.x -= 15;
