@@ -36,7 +36,6 @@ public partial class EnemyBehavior : MonoBehaviour {
     }
 
 
-
     private void Awake() {
         // initialize terminals positions
     }
@@ -121,8 +120,9 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     private void AfterDestroyed()
     {
-        if (Terminbehavior.BeenDestroyed == 1)
+        if (Terminbehavior.BeenDestroyed == 1 && Terminbehavior.trans == current_destination) 
         {
+            Debug.Log("Turn");
             setDst();
         }
     }
