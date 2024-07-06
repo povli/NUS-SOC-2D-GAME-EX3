@@ -97,27 +97,27 @@ public class Terminbehavior : MonoBehaviour
             color.a /= 0.75f;
             GetComponent<Renderer>().material.color = color;
         }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Hcheck = !Hcheck;
-        }
-        /*int tmpLife = Life;
-        Color tmpcolor = GetComponent<Renderer>().material.color;*/
-        if (!Hcheck)
-        {
-            /*Color color = GetComponent<Renderer>().material.color;
-            color.a /= 0f;
-            GetComponent<Renderer>().material.color = color;
-            Life = 10000000;*/
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            //gameObject.active= true;
-            /*Life = tmpLife;
-            GetComponent<Renderer>().material.color = tmpcolor;*/
-            gameObject.SetActive(Hcheck);
-        }
+        // if (Input.GetKeyDown(KeyCode.H))
+        // {
+        //     Hcheck = !Hcheck;
+        // }
+        // /*int tmpLife = Life;
+        // Color tmpcolor = GetComponent<Renderer>().material.color;*/
+        // if (!Hcheck)
+        // {
+        //     /*Color color = GetComponent<Renderer>().material.color;
+        //     color.a /= 0f;
+        //     GetComponent<Renderer>().material.color = color;
+        //     Life = 10000000;*/
+        //     gameObject.SetActive(false);
+        // }
+        // else
+        // {
+        //     //gameObject.active= true;
+        //     /*Life = tmpLife;
+        //     GetComponent<Renderer>().material.color = tmpcolor;*/
+        //     gameObject.SetActive(Hcheck);
+        // }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
