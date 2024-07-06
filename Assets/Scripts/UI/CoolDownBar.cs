@@ -14,8 +14,8 @@ public class CoolDownBar : MonoBehaviour
     void Start()
     {
         RectTransform r = GetComponent<RectTransform>();
-        mInitBarWidth = r.sizeDelta.x;  // This is the width of the Rect Transform
-
+        //mInitBarWidth = r.sizeDelta.x;  // This is the width of the Rect Transform
+        mInitBarWidth = 175f;
         mLastTriggered = Time.time; // time last triggered
     }
 
@@ -40,6 +40,11 @@ public class CoolDownBar : MonoBehaviour
         Vector2 s = GetComponent<RectTransform>().sizeDelta;
         s.x = percentage * mInitBarWidth;
         GetComponent<RectTransform>().sizeDelta = s;
+
+        if (sec < Mathf.Epsilon) {
+            GetComponent<RectTransform>().sizeDelta =  new Vector2(0f, 25f);
+        }
+        
     }
 
     public void SetCoolDownLength(float s)
