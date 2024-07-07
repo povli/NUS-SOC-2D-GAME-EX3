@@ -21,7 +21,7 @@ public partial class EnemyBehavior : MonoBehaviour {
 
     private static Vector3[] mTerminalPositions = new Vector3[6]; // positiions of terminal A-F
 
-    private int current_destination = 0; // current terminal going to
+    private int current_destination; // current terminal going to
 
     private const float kVeryClose = 25f;     //distance judge
 
@@ -33,7 +33,8 @@ public partial class EnemyBehavior : MonoBehaviour {
             setDst();
     }
     private void Awake() {
-        // initialize terminals positions
+        // initialize target
+        current_destination = Random.Range(0, mTotalTerminals);
     }
 
     private void Start() {
