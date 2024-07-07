@@ -28,7 +28,7 @@ public partial class EnemyBehavior : MonoBehaviour {
     private void CheckTargetPosition()      //distance judge turn
     {
         // Access the GameManager
-        float dist = Vector3.Distance(mTerminalPositions[current_destination], transform.localPosition);
+        float dist = Vector3.Distance(mTerminalPositions[current_destination], transform.position);
         if (dist < kVeryClose)
             setDst();
     }
@@ -42,8 +42,8 @@ public partial class EnemyBehavior : MonoBehaviour {
     }
     private void Update() {
         // AfterDestroyed();
-        MoveToNextTerminal();
         CheckTargetPosition();
+        MoveToNextTerminal();
         // Debug.Log(mTerminalPositions[current_destination]);
     }
 
@@ -124,24 +124,30 @@ public partial class EnemyBehavior : MonoBehaviour {
     private void PointAtPosition(Vector3 p, float r)
     {
         Vector3 v = p - transform.localPosition;
-        if(AreVectorsCollinear(p, v)){
+        if(AreVectorsClose(transform.up, v)){
             return;
         }
         // use to turn to the direction of target gradually
         transform.up = Vector3.LerpUnclamped(transform.up, v, r);
+        // Quaternion rotation = Quaternion.Euler(0f, 0f, r);
+        
+        // // 应用旋转
+        // transform.rotation = rotation;
     }
 
-    bool AreVectorsCollinear(Vector3 upVector, Vector3 orientation)
+    bool AreVectorsClose(Vector3 upVector, Vector3 orientation)
     {
-        if ((upVector.x == 0f && upVector.y == 0f) || (orientation.x == 0f && orientation.y == 0f))
+        if (orientation.x == 0f && orientation.y == 0f)
         {
             return false;
         }
 
-        float ratioX = upVector.x / orientation.x;
-        float ratioY = upVector.y / orientation.y;
+        Vector2 up = new Vector2(upVector.x, upVector.y);
+        Vector2 orient = new Vector2(orientation.x, orientation.y);
 
-        return Mathf.Approximately(ratioX, ratioY);
+        float angleInDegrees = Vector2.Angle(up, orient);
+
+        return angleInDegrees < kEnemyRotatingSpeed / 60;
     }
 
     public static void updateTerminalPosition(int index, Vector3 new_position){
