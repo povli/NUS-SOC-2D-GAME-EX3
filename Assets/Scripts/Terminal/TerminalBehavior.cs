@@ -91,10 +91,8 @@ public class Terminbehavior : MonoBehaviour
             EnemyBehavior.updateTerminalPosition(Uid, transform.localPosition);
             Life = 100;
             Color color = GetComponent<Renderer>().material.color;
-            color.a /= 0.75f;
-            color.a /= 0.75f;
-            color.a /= 0.75f;
-            color.a /= 0.75f;
+            color.a = 1f;
+            
             GetComponent<Renderer>().material.color = color;
         }
         // if (Input.GetKeyDown(KeyCode.H))
@@ -128,7 +126,7 @@ public class Terminbehavior : MonoBehaviour
 
             Color color = GetComponent<Renderer>().material.color;
             
-            color.a *= 0.75f;
+            color.a -= 0.25f;
             
             GetComponent<Renderer>().material.color = color;
             
